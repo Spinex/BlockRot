@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<level name="Test level" author="Spinex">
+	<hero x="0" y="3" z="0" gravity="10" />
+	<static x="0" y="0" z="0" sx="3" sy="1" sz="3" rx="0" ry="0" rz="0" />
+	<static x="5" y="0" z="0" sx="3" sy="1" sz="3" rx="0" ry="0" rz="0" />
+	
+	<rotational mass="10" x="10" y="0" z="0" sx="3" sy="1" sz="3" rx="0" ry="15" rz="0" />
+	<trampoline x="15" y="0" z="0" sx="3" sy="1" sz="3" rx="0" ry="0" rz="0" />
+
+	<surf mass="10" x="10" y="0" z="5" sx="3" sy="1" sz="3" rx="0" ry="0" rz="0" />
+
+	<exit x="20" y="0" z="0" sx="3" sy="1" sz="3" rx="0" ry="0" rz="0" />
+
+</level>
