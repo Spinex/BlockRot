@@ -5,5 +5,7 @@ jBullet website: http://jbullet.advel.cz/
 In this game you are supposed to control the yellow block that has to pass the consecutive maps.
 There will be special kinds of platforms that have specific behavior.
 
+It's based on EgonOlsen's example on JPCT-AE usage on Android.
+
 
 
