@@ -1,5 +1,6 @@
 package main;
 
+import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -15,6 +16,9 @@ import com.threed.jpct.Texture;
 import com.threed.jpct.TextureManager;
 import com.threed.jpct.util.SkyBox;
 
+import java.io.InputStream;
+import java.util.Scanner;
+
 import javax.vecmath.Vector3f;
 
 import src.R;
@@ -27,13 +31,13 @@ public class GameLogic {
 	private TextureManager texManager = null;
 	private Camera cam = null;
 
-	private float camRotationalSlowness = 30.0f;
-	private float camDistance = 50.0f;
+	private float camRotationalSlowness = 25.0f;
+	private float camDistance = 50.00f;
 	private float jumpHeight = 4.0f;
 	public SkyBox skyBox = null;
 
-	private float maxMovementSpeed = 60.0f;
-	private float movementForce = 100.0f;
+	private float maxMovementSpeed = 60.00f;
+	private float movementForce = 50.0f;
 
 	private int width = 0;
 	private int height = 0;
@@ -94,7 +98,7 @@ public class GameLogic {
 
 		analogMovementController = new GUIController(main, R.drawable.controllercross, 256, 256, R.drawable.controllerstick, 64, 64, 0);
 		analogCameraController = new GUIController(main, R.drawable.controllercross, 128, 128, R.drawable.controllerstick, 32, 32, 0);
-		analogMovementController.setPosition(10, height / 4);
+		analogMovementController.setPosition(10, height / 2 - 128);
 		analogCameraController.setPosition(width - 128, height/2 - 64);
 
 		OnTouchCallback controllersUntouchCallback = new OnTouchCallback() {
@@ -154,7 +158,12 @@ public class GameLogic {
 		//world.sun.setIntensity(250, 250, 250);
 		world.sun.setIntensity(90, 90, 90);
 		world.gamePhysics.dynamicsWorld.setGravity(new Vector3f(0, 0, 0));
-		WorldLoader.refillWorldWithString(world, "NULL");
+
+		InputStream worldDescriptionStream = main.getResources().openRawResource(R.raw.level);
+		String worldDescription = new Scanner(worldDescriptionStream,"UTF-8").useDelimiter("\\A").next();
+		//wczytaj swiat
+		WorldLoader.refillWorldWithString(world, worldDescription);
+
 		initGUI();
 		initSkyBox();
 		cam = world.graphicsWorld.getCamera();
@@ -183,8 +192,7 @@ public class GameLogic {
 		//jezeli wypadniemy poza poziom, to ustaw gracza na pozycji poczatkowej
 		if (world.hero.object.getTransformedCenter().y > 20)
 		{
-			//world.reinitObjects();
-			WorldLoader.refillWorldWithString(world, "NULL");
+			world.reinitObjects();
 		}
 		float rotation = (float) analogCameraController.getNormalizedFactorX();
 		float yrotation = (float) analogCameraController.getNormalizedFactorY();
@@ -204,7 +212,7 @@ public class GameLogic {
 		SimpleVector xAxisVersor = new SimpleVector(1, 0, 0);
 		float angleAbsoluteRotation = (float) Math.atan2( cameraDirection.x*xAxisVersor.z - cameraDirection.z*xAxisVersor.x,
 				cameraDirection.x*xAxisVersor.x + cameraDirection.z*xAxisVersor.z );
-		world.hero.setRotation(new SimpleVector(-angleAbsoluteRotation, 0 ,0));
+		world.hero.setRotation(new SimpleVector(0, -angleAbsoluteRotation ,0));
 
 		cameraDirection = cameraDirection.normalize();
 		cameraDirection.scalarMul((int) (analogMovementController.getNormalizedFactorY() * movementForce));

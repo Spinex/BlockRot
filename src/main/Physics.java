@@ -31,6 +31,9 @@ public class Physics {
 		
 		Vector3f worldAabbMin = new Vector3f(-10000,-10000,-10000);
 		Vector3f worldAabbMax = new Vector3f(10000,10000,10000);
+
+		//Vector3f worldAabbMin = new Vector3f(-10,-10,-10);
+		//Vector3f worldAabbMax = new Vector3f(10,10,10);
 		AxisSweep3 overlappingPairCache = new AxisSweep3(worldAabbMin, worldAabbMax);
 		
 		dynamicsWorld = new DiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);

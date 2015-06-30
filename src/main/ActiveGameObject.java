@@ -53,7 +53,7 @@ public class ActiveGameObject {
 		Transform transform = new Transform();
 		rigidBody.getCenterOfMassTransform(transform);
 		Quat4f quat = new Quat4f();
-		QuaternionUtil.setEuler(quat, eulerRotation.x, eulerRotation.y, eulerRotation.z);
+		QuaternionUtil.setEuler(quat, eulerRotation.y, eulerRotation.x, eulerRotation.z);
 		transform.setRotation(quat);
 		rigidBody.setCenterOfMassTransform(transform);
 	}
@@ -64,7 +64,7 @@ public class ActiveGameObject {
 		rigidBody.setLinearVelocity(new Vector3f(0, 0, 0));
 		Transform transform = new Transform();
 		rigidBody.getCenterOfMassTransform(transform);
-		transform.origin.set(absolutePosition.x, -absolutePosition.y, absolutePosition.z);
+		transform.origin.set(absolutePosition.x, -absolutePosition.y, -absolutePosition.z);
 		rigidBody.setCenterOfMassTransform(transform);
 	}
 
@@ -85,15 +85,16 @@ public class ActiveGameObject {
 
 	public boolean isOnTheGround(DiscreteDynamicsWorld dynamicsWorld)
 	{
-		return (testRayCollision(dynamicsWorld, new Vector3f(0, -6.5f, 0))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(0, -6.5f, -6.5f))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(0, -6.5f, 6.5f))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(-6.5f, -6.5f, 0))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(-6.5f, -6.5f, -6.5f))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(-6.5f, -6.5f, 6.5f))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(6.5f, -6.5f, 0))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(6.5f, -6.5f, -6.5f))) ||
-				(testRayCollision(dynamicsWorld, new Vector3f(6.5f, -6.5f, 6.5f)));
+		float ray = 6.5f;
+		return (testRayCollision(dynamicsWorld, new Vector3f(0, -ray, 0))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(0, -ray, -ray))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(0, -ray, ray))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(-ray, -ray, 0))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(-ray, -ray, -ray))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(-ray, -ray, ray))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(ray, -ray, 0))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(ray, -ray, -ray))) ||
+				(testRayCollision(dynamicsWorld, new Vector3f(ray, -ray, ray)));
 	}
 
 

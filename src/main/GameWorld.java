@@ -41,6 +41,13 @@ public class GameWorld {
     {
         hero.setPosition(hero.initialPosition);
         hero.setRotation(hero.initialRotation);
+
+        for (ActiveGameObject gameObject : staticObjects)
+        {
+            gameObject.setPosition(gameObject.initialPosition);
+            gameObject.setRotation(gameObject.initialRotation);
+        }
+
         for (ActiveGameObject gameObject : rotationalObjects)
         {
             gameObject.setPosition(gameObject.initialPosition);
