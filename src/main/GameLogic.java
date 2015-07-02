@@ -73,7 +73,7 @@ public class GameLogic {
 		texManager.addTexture("skybox_top", skyBoxTop);
 		texManager.addTexture("skybox_bottom", skyBoxTop);
 
-		skyBox = new SkyBox("skybox_left", "skybox_front", "skybox_right", "skybox_back", "skybox_top", "skybox_bottom", 1.0f);
+		skyBox = new SkyBox("skybox_left", "skybox_front", "skybox_right", "skybox_back", "skybox_top", "skybox_bottom", 1000.0f);
 		skyBox.compile();
 	}
 
@@ -151,26 +151,37 @@ public class GameLogic {
 
 	public void initGameObjects()
 	{
+
 		/* */
 		world = new GameWorld();
 		world.graphicsWorld.setAmbientLight(50, 50, 100);
 		world.sun = new Light(world.graphicsWorld);
 		//world.sun.setIntensity(250, 250, 250);
-		world.sun.setIntensity(90, 90, 90);
+		world.sun.setIntensity(128, 128, 140);
 		world.gamePhysics.dynamicsWorld.setGravity(new Vector3f(0, 0, 0));
 
 		InputStream worldDescriptionStream = main.getResources().openRawResource(R.raw.level);
 		String worldDescription = new Scanner(worldDescriptionStream,"UTF-8").useDelimiter("\\A").next();
 		//wczytaj swiat
+		Texture staticTexture = new Texture(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(main.getResources(),
+				R.drawable.bricks), 256, 256, true), true);
+		Texture rotationalTexture = new Texture(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(main.getResources(),
+				R.drawable.rotational), 256, 256, true), true);
+		Texture heroTexture = new Texture(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(main.getResources(),
+				R.drawable.hero), 256, 256, true), true);
+		texManager.addTexture("bricks_texture", staticTexture);
+		texManager.addTexture("rotational_texture", rotationalTexture);
+		texManager.addTexture("hero_texture", heroTexture);
 		WorldLoader.refillWorldWithString(world, worldDescription);
 
 		initGUI();
 		initSkyBox();
+
 		cam = world.graphicsWorld.getCamera();
 		cam.setPosition(world.hero.object.getTransformedCenter());
 		cam.moveCamera(Camera.CAMERA_MOVEOUT, camDistance);
 		cam.lookAt(world.hero.object.getTransformedCenter());
-		SimpleVector sv = new SimpleVector(0, -50, 0);
+		SimpleVector sv = new SimpleVector(0, -100, 0);
 		world.sun.setPosition(sv);
 		/* */
 	}

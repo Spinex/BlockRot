@@ -14,6 +14,7 @@ public class AssetsFactory {
         result.object.setAdditionalColor(100, 100, 0);
         result.rigidBody.setAngularFactor(0.0f);
         result.rigidBody.setActivationState(CollisionObject.DISABLE_DEACTIVATION);
+        result.object.setTexture("hero_texture");
         return result;
     }
 
@@ -21,6 +22,7 @@ public class AssetsFactory {
     {
         ActiveGameObject result = PhysicsFactory.getStaticBox("static", scale,
                 position, rotation, world, 1.0f);
+        result.object.setTexture("bricks_texture");
         return result;
     }
 
@@ -29,6 +31,7 @@ public class AssetsFactory {
         ActiveGameObject result = PhysicsFactory.getBox("rotational", scale,
                 position, rotation, world, mass, 0.0f, 0.0f, 0, 0 );
 
+        result.object.setTexture("rotational_texture");
         result.object.setAdditionalColor(0, 0, 255);
         //result.rigidBody.setActivationState(CollisionObject.DISABLE_DEACTIVATION);
         return result;

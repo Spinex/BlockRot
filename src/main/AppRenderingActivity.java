@@ -18,7 +18,9 @@ import com.threed.jpct.util.MemoryHelper;
 
 import java.lang.reflect.Field;
 
+import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
@@ -76,8 +78,8 @@ public class AppRenderingActivity extends Activity {
 		if (gl2) {
 			mGLView.setEGLContextClientVersion(2);
 		} else {
-			mGLView.setEGLConfigChooser(new AAConfigChooser(mGLView));
-			/* * /
+			//mGLView.setEGLConfigChooser(new AAConfigChooser(mGLView));
+			/* */
 			mGLView.setEGLConfigChooser(new GLSurfaceView.EGLConfigChooser() {
 				public EGLConfig chooseConfig(EGL10 egl, EGLDisplay display) {
 					// Ensure that we get a 16bit framebuffer. Otherwise, we'll
@@ -211,10 +213,10 @@ public class AppRenderingActivity extends Activity {
 
 		public void onDrawFrame(GL10 gl) {
 			fb.clear(backgroundColor);
-			//logic.skyBox.render(logic.world.graphicsWorld, fb);
 			logic.world.graphicsWorld.renderScene(fb);
 			/* */
 			logic.world.graphicsWorld.draw(fb);
+			logic.skyBox.render(logic.world.graphicsWorld, fb);
 			logic.Update(touches, fb);
 						
 			fb.display();

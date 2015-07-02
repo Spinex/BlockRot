@@ -4,10 +4,10 @@
 	<static x="0" y="0" z="0" sx="30" sy="5" sz="30" rx="0" ry="0" rz="0" />
 	<static x="0" y="0" z="200" sx="30" sy="5" sz="30" rx="0" ry="0" rz="0" />
 	
-	<rotational x="0" y="0" z="40" sx="100" sy="5" sz="5" rx="0" ry="0" rz="0" mass="7" />
-	<rotational x="0" y="0" z="80" sx="100" sy="5" sz="5" rx="0" ry="0" rz="0" mass="7" />
-	<rotational x="0" y="0" z="120" sx="100" sy="5" sz="5" rx="0" ry="0" rz="0" mass="7" />
-	<rotational x="0" y="0" z="160" sx="100" sy="5" sz="5" rx="0" ry="0" rz="0" mass="7" />
+	<!--<rotational x="0" y="0" z="40" sx="100" sy="5" sz="5" rx="0" ry="0" rz="0" mass="7" />
+	<rotational x="0" y="0" z="80" sx="100" sy="5" sz="5" rx="0" ry="0" rz="5" mass="7" />-->
+	<rotational x="0" y="0" z="120" sx="100" sy="5" sz="5" rx="0" ry="0" rz="10" mass="7" />
+	<!--<rotational x="0" y="0" z="160" sx="100" sy="5" sz="5" rx="0" ry="0" rz="20" mass="7" />-->
 	
 	
 

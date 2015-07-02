@@ -65,10 +65,12 @@ public class PhysicsFactory {
 		world.gamePhysics.dynamicsWorld.addRigidBody(body);
 		
 		Object3D box = ExtendedPrimitives.createBox(scale);
+		//box.setEnvmapped(Object3D.ENVMAP_ENABLED);
 		box.setName(name);
 		box.setOrigin(position);
 		box.strip();
 		box.build();
+
 		world.graphicsWorld.addObject(box);
 
 		ActiveGameObject result = new ActiveGameObject(box, body);
